@@ -1,6 +1,8 @@
 package metoder;
 
 import Table_library.FluidTable;
+import Table_library.GasTable;
+import Table_library.SolidTable;
 
 public class MethodLibrary {
 
@@ -24,6 +26,14 @@ public class MethodLibrary {
 		
 		
 		System.out.println(delta(5, 1));
+		
+		System.out.println(volumeToMass(FluidTable.WATER,1));
+		
+		System.out.println(volumeToMass(GasTable.AIR,1));
+		
+		System.out.println(volumeToMass(SolidTable.IRON, 1));
+		
+		System.out.println(svtVelocity(10, 5));
 
 	}
 
@@ -103,10 +113,57 @@ public class MethodLibrary {
 //	}
 //	//fallSpeed(2.5) => 7,00713922
 	
+	/**
+	 * Denna metod beräknar förändringen mellan 2 tal
+	 * @param first Tal 1
+	 * @param last Tal 2
+	 * @return Förändring från tal 1 till 2
+	 */
 	public static double delta(double first, double last) {
 		return last - first;
 	}
-//	delta(1,10) => 9
-//	delta(5,1) => -4
+
+	/**
+	 * Denna metod beräknar massan för en viss volym av en vätska
+	 * @param fluid vätskan i fråga
+	 * @param volume volymen man vill räkna ut massan för
+	 * @return Massan man precis räknat ut
+	 */
+	public static double volumeToMass(FluidTable fluid, double volume) {
+		return volume * fluid.density;
+	}
+	
+	/**
+	 * Denna metod beräknar massan för en viss volym av en gas
+	 * @param gas gasen i fråga
+	 * @param volume volymen man vill räkna ut massan för
+	 * @return Massan man precis räknat ut
+	 */
+	public static double volumeToMass(GasTable gas, double volume) {
+		return volume * gas.density;
+	}
+	
+	/**
+	 * Denna metod beräknar massan för en viss volym av en solid
+	 * @param solid materialet i fråga
+	 * @param volume volymen man vill räkna ut massan för
+	 * @return Massan man precis räknat ut
+	 */
+	public static double volumeToMass(SolidTable solid, double volume) {
+		return volume * solid.density;
+	}
+	
+	/**
+	 * Denna metod beräknar medelhastighet
+	 * @param distance sträckan
+	 * @param time tiden man färdades denna sträcka på
+	 * @return medelhastighet
+	 */
+	public static double svtVelocity(double distance, double time) {
+		return distance / time;
+	}
+	
+
+
 
 }

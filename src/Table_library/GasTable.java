@@ -7,8 +7,8 @@ public enum GasTable {
 	OXYGEN(1.43, 0.92)
 	;
 
-	double density;
-	double heatCapacity;
+	public double density;
+	public double heatCapacity;
 
 	GasTable(double d, double hc) {
 		density = d;
