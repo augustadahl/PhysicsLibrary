@@ -78,9 +78,9 @@ public class MethodLibrary {
 	}
 	
 	/**
-	 * 
+	 * Denna metod räknar ut hastigheten för ett fallande objekt
 	 * @param height
-	 * @return
+	 * @return Hastigheten
 	 */
 	public static double fallSpeed(double height) {
 		return Math.sqrt(2*G_SWE*height);
