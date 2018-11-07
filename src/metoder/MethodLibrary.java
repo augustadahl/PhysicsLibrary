@@ -6,55 +6,12 @@ import Table_library.SolidTable;
 
 public class MethodLibrary {
 
-	static double G = 9.82;
-	static double p_0 = 101.3E3; // 101.3 kPa
+	static double G_SWE = 9.82;
+	static double P_0 = 101.3E3; // 101.3 kPa
 	static double R = 8.3145;
 	static double C = 2.99792458 * 1E8;
+	static double G = 6.6726 * 1E-11;
 	
-//	G - Gravitationskonstanten.
-//	R - Almänna gaskonstanten.
-//	p_0 - lufttrycket vid havsytan.
-//	c - Ljusets hastighet i vakum.
-//	g_swe - Tyngdaccelerationen för Sverige.
-
-	public static void main(String[] args) {
-
-		System.out.println(fahrenheitToCelsius(30));
-
-		System.out.println(kelvinToCelsius(0));
-
-		System.out.println(fluidPressure(FluidTable.WATER, 10));
-
-		System.out.println(pressureUnderWater(10));
-
-		System.out.println(kineticEnergy(2, 2));
-		
-		System.out.println(potentialEnergy(2, 5));
-		
-		System.out.println(fallSpeed(2.5));
-		
-		System.out.println(delta(5, 1));
-		
-		System.out.println(volumeToMass(FluidTable.WATER,1));
-		
-		System.out.println(volumeToMass(GasTable.AIR,1));
-		
-		System.out.println(volumeToMass(SolidTable.IRON, 1));
-		
-		System.out.println(svtVelocity(10, 5));
-
-		System.out.println(svtDistance(10, 5));
-		
-		System.out.println(heat(SolidTable.IRON,1,2));
-		
-		System.out.println(heat(FluidTable.WATER,1,10));
-		
-		System.out.println(heat(GasTable.AIR,1,1));
-		
-		System.out.println(velocityToHeight(9.82));
-		
-		System.out.println(2 * 1E8);
-	}
 
 	/**
 	 * Denna metod konverterar fahrenheit till celsius.
@@ -84,7 +41,7 @@ public class MethodLibrary {
 	 * @return Tryck på det bestämda djupet Pascal??
 	 */
 	public static double fluidPressure(FluidTable fluid, double deep) {
-		double pressure = fluid.density * G * deep;
+		double pressure = fluid.density * G_SWE * deep;
 		return pressure;
 	}
 
@@ -95,7 +52,7 @@ public class MethodLibrary {
 	 * @return Tryck på det bestämda djupet pascal??
 	 */
 	public static double pressureUnderWater(double deep) {
-		return deep * G * 0.998 * 1E3;
+		return deep * G_SWE * 0.998 * 1E3;
 	}
 
 	/**
@@ -117,7 +74,7 @@ public class MethodLibrary {
 	 * @return Lägesenergin för föremålet vid denna höjd joule
 	 */
 	public static double potentialEnergy(double mass, double height) {
-		return mass * height * G;
+		return mass * height * G_SWE;
 	}
 	
 	/**
@@ -126,7 +83,7 @@ public class MethodLibrary {
 	 * @return
 	 */
 	public static double fallSpeed(double height) {
-		return Math.sqrt(2*G*height);
+		return Math.sqrt(2*G_SWE*height);
 			
 	}
 	
@@ -261,7 +218,7 @@ public class MethodLibrary {
 	 * @return Höjd
 	 */
 	public static double velocityToHeight(double velocity) {
-		return Math.pow(velocity, 2) / (2 * G);
+		return Math.pow(velocity, 2) / (2 * G_SWE);
 	}
 	
 	
