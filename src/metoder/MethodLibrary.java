@@ -8,6 +8,12 @@ public class MethodLibrary {
 
 	static double G = 9.82;
 	static double ATM = 101.3E3; // 101.3 kPa
+	
+//	G - Gravitationskonstanten.
+//	R - Almänna gaskonstanten.
+//	p_0 - lufttrycket vid havsytan.
+//	c - Ljusets hastighet i vakum.
+//	g_swe - Tyngdaccelerationen för Sverige.
 
 	public static void main(String[] args) {
 
@@ -23,7 +29,7 @@ public class MethodLibrary {
 		
 		System.out.println(potentialEnergy(2, 5));
 		
-		
+		System.out.println(fallSpeed(2.5));
 		
 		System.out.println(delta(5, 1));
 		
@@ -35,6 +41,15 @@ public class MethodLibrary {
 		
 		System.out.println(svtVelocity(10, 5));
 
+		System.out.println(svtDistance(10, 5));
+		
+		System.out.println(heat(SolidTable.IRON,1,2));
+		
+		System.out.println(heat(FluidTable.WATER,1,10));
+		
+		System.out.println(heat(GasTable.AIR,1,1));
+		
+		System.out.println(velocityToHeight(9.82));
 	}
 
 	/**
@@ -101,17 +116,17 @@ public class MethodLibrary {
 		return mass * height * G;
 	}
 	
-//	/**
-//	 * 
-//	 * @param height
-//	 * @return
-//	 */
-//	public static double fallSpeed(double height) {
-//		for(int i = height; i <= 0; i--) {
-//			
-//		}
-//	}
-//	//fallSpeed(2.5) => 7,00713922
+	/**
+	 * 
+	 * @param height
+	 * @return
+	 */
+	public static double fallSpeed(double height) {
+		return Math.sqrt(2*G*height);
+			
+	}
+	
+	//fallSpeed(2.5) => 7,00713922
 	
 	/**
 	 * Denna metod beräknar förändringen mellan 2 tal
@@ -162,6 +177,91 @@ public class MethodLibrary {
 	public static double svtVelocity(double distance, double time) {
 		return distance / time;
 	}
+	
+	/**
+	 * Denna metod beräknar hur långt man kommer under en viss tid med en viss hastighet
+	 * @param velocity hastigheten
+	 * @param time tiden
+	 * @return Sträckan
+	 */
+	public static double svtDistance(double velocity, double time) {
+		return velocity * time;
+	}
+	
+	/**
+	 * Denna metod räknar ut hur lång tid en sträcka tar att åka
+	 * @param distance Sträckans längd
+	 * @param velocity hastighten man åker i
+	 * @return Tiden det tar att åka sträckan
+	 */
+	public static double svtTime(double distance, double velocity) {
+		return distance / velocity;
+	}
+	
+	/**
+	 * Denna metod räknar ut arbete med hjälp av kraft och sträcka.
+	 * @param force 
+	 * @param distance
+	 * @return Arbete
+	 */
+	public static double work(double force, double distance) {
+		return force * distance;
+	}
+	
+	/**
+	 * Denna metod räknar ut effekt med hjälp av arbete och tid.
+	 * @param work
+	 * @param time
+	 * @return Effekt
+	 */
+	public static double power(double work, double time) {
+		return work / time;
+	}
+	
+	/**
+	 * Denna metod räknar ut hur mycket energi som krävs för att värma ett visst material ett angivet antal grader.
+	 * @param solid
+	 * @param mass
+	 * @param deltaTemperatur
+	 * @return Energin som krävs
+	 */
+	public static double heat(SolidTable solid, double mass, double deltaT) {
+		return mass * solid.heatCapacity * deltaT;
+	}
+
+	/**
+	 * Denna metod räknar ut hur mycket energi som krävs för att värma en viss mängd vätska ett angivet antal grader.
+	 * @param fluid
+	 * @param volume
+	 * @param deltaTemperatur
+	 * @return Energin som krävs
+	 */
+	public static double heat(FluidTable fluid, double volume, double deltaT) {
+		return volume * fluid.density * fluid.heatCapacity * deltaT;
+	}
+	
+	/**
+	 * denna metod räknar ut hur mycket energi som krävs för att värma en viss volym gas ett angivet antal grader.
+	 * @param gas
+	 * @param volume
+	 * @param deltaT
+	 * @return Energin som krävs
+	 */
+	public static double heat(GasTable gas, double volume, double deltaT) {
+		return volume * gas.density * gas.heatCapacity * deltaT;
+	}
+	
+	/**
+	 * Denna metod räknar ut hur högt ett föremål med en viss hastighet uppåt kommer.
+	 * @param velocity
+	 * @return Höjd
+	 */
+	public static double velocityToHeight(double velocity) {
+		return Math.pow(velocity, 2) / (2 * G);
+	}
+//	velocityToHeight(9.82) => 4.91 
+
+	
 	
 
 
