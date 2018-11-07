@@ -2,9 +2,9 @@ package Table_library;
 
 public enum FluidTable {
 	
-	H20(0.998, 4.19, 0, 100, 2260), 
+	ETANOL(0.789, 2.30, -117, 78.2, 841), 
 	WATER(0.998, 4.19, 0, 100, 2260),
-	H2SO4(1.84, 1.38, 10, 336, 511)
+	SVAVELSYRA(1.84, 1.38, 10, 336, 511)
 	;
 
 	public double density;

@@ -7,7 +7,9 @@ import Table_library.SolidTable;
 public class MethodLibrary {
 
 	static double G = 9.82;
-	static double ATM = 101.3E3; // 101.3 kPa
+	static double p_0 = 101.3E3; // 101.3 kPa
+	static double R = 8.3145;
+	static double C = 2.99792458 * 1E8;
 	
 //	G - Gravitationskonstanten.
 //	R - Almänna gaskonstanten.
@@ -50,6 +52,8 @@ public class MethodLibrary {
 		System.out.println(heat(GasTable.AIR,1,1));
 		
 		System.out.println(velocityToHeight(9.82));
+		
+		System.out.println(2 * 1E8);
 	}
 
 	/**
@@ -259,7 +263,10 @@ public class MethodLibrary {
 	public static double velocityToHeight(double velocity) {
 		return Math.pow(velocity, 2) / (2 * G);
 	}
-//	velocityToHeight(9.82) => 4.91 
+	
+	
+
+	
 
 	
 	
