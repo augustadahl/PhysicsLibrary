@@ -11,6 +11,7 @@ public class MethodLibrary {
 	static double R = 8.3145;
 	static double C = 2.99792458 * 1E8;
 	static double G = 6.6726 * 1E-11;
+	static double LY = 9.46055 * 1E15;
 	
 
 	/**
@@ -214,12 +215,121 @@ public class MethodLibrary {
 	
 	/**
 	 * Denna metod räknar ut hur högt ett föremål med en viss hastighet uppåt kommer.
-	 * @param velocity
-	 * @return Höjd
+	 * @param velocity m/s
+	 * @return Höjd M
 	 */
 	public static double velocityToHeight(double velocity) {
 		return Math.pow(velocity, 2) / (2 * G_SWE);
 	}
+	
+	//egna metoder nedanför
+	
+	
+	/**
+	 * Denna metod räknar ut tryck 
+	 * @param tryckkraft N
+	 * @param area m2
+	 * @return tryck N/m2 / Pascal Pa
+	 */
+	public static double tryck(double tryckkraft, double area) {
+		return tryckkraft / area;
+	}
+	
+	/**
+	 * Denna metod beräknar tryckkraft
+	 * @param mass Kg
+	 * @return tyngdkraft N
+	 */
+	public static double Tyngdkraft(double mass) {
+		return mass * G_SWE;
+	}
+	
+	/**
+	 * Denna metod räknar ut lyftkraften på ett föremål som befinner sig i en vätska
+	 * @param fluid 
+	 * @param volume Volymen på den undanträngda vätskan. Liter
+	 * @return Lyftkraften N
+	 */
+	public static double ArkimedesPrincip(FluidTable fluid, double volume) {
+		return fluid.density * (volume/1000) * G_SWE;
+	}
+
+	/**
+	 * Denna metod räknar ut friktionen på ett föremål
+	 * @param Ftal friktionstalet
+	 * @param Mass kg
+	 * @return Friktionskraften N
+	 */
+	public static double Friction(double Ftal, double Mass) {
+		return Ftal * Mass * G_SWE;
+	}
+	
+	/**
+	 * Denna metod räknar ut luftmotståndet på ett föremål
+	 * @param C Luftmotståndskoefficient (bil ca 0.25 till 0.45)
+	 * @param area Tvärsnittsarea m2
+	 * @param velocity m/s
+	 * @return Luftmotstånd N
+	 */
+	public static double Luftmotstånd(double C, double area, double velocity) {
+		return (C * GasTable.AIR.density * area * Math.pow(velocity, 2)) / 2;
+	}
+	
+	/**
+	 * Denna metod beräknar en ungefärlig bromssträcka på en vanilg personbil (grovt förenklat)
+	 * @param velocity Km/h
+	 * @return Bromssträcka Meter
+	 */
+	public static double BrakeDistance(double velocity) {
+		return Math.pow(velocity / 3.6, 2) / (2 * 2.5);
+	}
+	
+	/**
+	 * Denna metod räknar ut hur långt bort från ett blixtnedslag man befinner sig
+	 * @param DeltaT sekunder mellan ljuset och ljudet
+	 * @return Distance Km
+	 */
+	public static double LightningDistance(double DeltaT) {
+		return (330 * DeltaT) / 1000;
+	}
+	
+	/**
+	 * Denna metod räknar ut Gravitationskraften mellan partiklar
+	 * @param mass_1 KG
+	 * @param mass_2 KG
+	 * @param distance Meter (mellan kropparnas tyngdpunkt)
+	 * @return Force N
+	 */
+	public static double Gravity(double mass_1, double mass_2, double distance) {
+		return G * ((mass_1 * mass_2) / Math.pow(distance, 2));
+	}
+	
+	/**
+	 * Denna metod beräknar hur långt ljus färdas under en viss tid
+	 * @param deltaT Sekunder
+	 * @return Distance Ljusår
+	 */
+	public static double Lightyear(double deltaT) {
+		return (C * deltaT) / LY;
+	}
+	
+	/**
+	 * Denna metod omvandlar Brittiska Miles per gallon till Liter per 100 Km
+	 * @param MpG 
+	 * @return L/100km
+	 */
+	public static double MpGtoLper100Km(double MpG) {
+		return (100 * 4.5461) / (1.609344 * MpG);
+	}
+	
+	
+	
+
+	
+	
+	
+	
+	
 	
 	
 
