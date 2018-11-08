@@ -1,7 +1,5 @@
 package metoder;
 
-import com.sun.swing.internal.plaf.metal.resources.metal;
-
 import Table_library.FluidTable;
 import Table_library.SolidTable;
 

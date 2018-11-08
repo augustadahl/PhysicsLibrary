@@ -11,7 +11,7 @@ public class MethodLibrary {
 	static double R = 8.3145;
 	static double C = 2.99792458 * 1E8;
 	static double G = 6.6726 * 1E-11;
-	static double LY = 9.46055 * 1E15;
+	static double LY = 9.46055 * 1E15; //meter per ljusår
 	
 
 	/**
